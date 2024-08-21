@@ -1,0 +1,28 @@
+fqvalue skeleton:
+
+               -------------------------------------------->
+               ^             ^              ^              |
+               |             |              |              |		
+ main --> init --> read_line --> check_line --> print --> END
+            |     ^     every four lines    |
+            |     |------------------------<|
+         openfile
+	    
+		
+|              	  |              |
+|                 |              |statistic vars____________
+|                 |line[][]_________________________________
+|QSTART *fp_________________________________________________	
+	
+
+---------------------------------------------------------------------------------
+global variables:
+	QSTART: Quality start value of ASCII;                   from init();
+	FILE: 	point the file input;                           from openfile();
+	
+local variables:
+	line[][]: the four lines, a unit in fastq file;	        from read_line();
+		  shared by read_line, check_line, and print;
+	some statistic variables:                               from check_line();
+		  shared by check_line and print;
+

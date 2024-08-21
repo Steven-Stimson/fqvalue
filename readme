@@ -1,0 +1,78 @@
+HELP INFORMATION OF Fqvalue PROGRAM!
+Date: 1/6/2015
+Author: Shuaihu
+
+1.The basic function of program
+To do a simple scan on the fastq file and to compute the total reads, bases, mean length, contents of ATGCN of totality and each cycle, Q10, Q20, Q30, error rate of read and cycle, fluctuation between cycles and so on. Its speed is about 1GB/min.
+
+
+2.The use of program
+(1) produce of Fqvalue program on your machine
+enter the folder "/fqvalue2/source/", and then use the command "make" to produce the program named "fqvalue". Next, use the command "make clean" to delete intermediate generated files if you want.
+
+(2)view help comed with program
+use command "./fqvalue" to show the brief help as follows:
+"
+#2.2 Usage: fqvalue -q <int> <file: .fq|.fastq|.gz>
+Try 'fqvalue -h' for more information
+"
+use command "./fqvalue -h" to show detailed help.try it.
+
+(3)run your program
+preconditions: data file, and start quality value encoded by ASCII of input file.
+use command "./fqvalue -q 33 xxx.fq.gz";
+"-q" is the option for start quality value encoded by ASCII, usually is 33, but should notice that it can be other value.
+"xxx.fq.gz" represents the input file of fastq file or it's compressed format, with a suffix with ".fq" or ".gz" or ".fastq".
+
+(4)save and view the output file
+fqvalue program can't save the result automatically. It usually shows the final result on the screen directly. If you want save the result on the machine, use the command "./fqvalue -q 33 xxx.fq.gz >outputFileName" when you run the program.
+"outputFilName" contains the pathname and filename you want, such as "./ouput.fqv" to save the result in the current directory named "output.fqv".Then use command "more output.fqv" to show the result.
+
+(5)glossary
+Q10: represent the percent number of base whose quality value is higher than or equal to 10.
+Q10 in read use the whole read's quality, and represent the percent number of read whose quality value is higher than or equal to 10.
+
+error value: transform the quality value to the error value by a formula. It represent the possibility of errors of base.
+
+#num: such as #1, #2, represent the first cycle or the second cycle.
+
+Error_avg: calulate the average error value of total bases in a cycle.
+
+Error_SD: is the standard deviation of error value of base in a cycle.
+
+
+3. Precautions
+(1)read length
+read length must be shorted than 2000.
+
+(2)filename length
+filename length must be shorted than 500.
+
+(3)input data file
+every unit in data file must be integral.
+such as 
+"
+@FCC0CFMACXX:2:1101:1213:1996#62_6/1
+AGATGCGCTGACCAGACTGCGCTACACCTCGTCTCCCCCCCAGAACATATGGATCTACCCGATCGATAAAGACTCGAACCGCA
++
+egggggiiiiiiiiihhiiiihighiihhiifhhfiiiiiebcbdcccccdccccccccccaaacaccabbccbbccccaaaB
+"
+the four line must be contained in a unit.
+"
+@FCC0CFMACXX:2:1101:1213:1996#62_6/1
+
++
+
+"
+this unit is incomplete.
+
+(4)"-q" option
+you should konw the start qulity value enoced by ASCII of your data file.
+
+(5)input file format
+must be a fastq file and should have a suffix such as ".fq" or ".gz" or ".fastq".
+
+(6)output file
+should save it mannually. view previous help information "2.The use of program->(4)save and view the output file".
+
+
